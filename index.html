@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Salgados Da Vovó — Coxinhas e salgados artesanais</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --orange-500: #e67e22;
+      --orange-600: #cf6d1d;
+      --bg: #faf7f2;
+      --card-shadow: 0 10px 30px rgba(13,13,13,0.08);
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,Arial, sans-serif;
+      background:var(--bg);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Header / Navbar */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 28px;
+      background:linear-gradient(90deg,var(--orange-500),var(--orange-600));
+      color:white;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      position:sticky;
+      top:0;
+      z-index:60;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo-svg{ width:46px; height:46px; flex-shrink:0;}
+    .brand h1{ font-size:18px; margin:0; font-weight:700; letter-spacing:0.2px;}
+    .brand p{ margin:0; font-size:12px; opacity:0.95; font-weight:600 }
+
+    nav a{
+      color:rgba(255,255,255,0.96);
+      text-decoration:none;
+      margin-left:12px;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    /* Hero */
+    .hero{
+      min-height:440px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:left;
+      padding:48px 24px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.30), rgba(0,0,0,0.15)),
+        url("img/hero.jpg") center/cover no-repeat;
+      color:white;
+    }
+    .hero-inner{
+      max-width:1100px;
+      display:flex;
+      align-items:center;
+      gap:32px;
+      width:100%;
+    }
+    .hero-text{
+      flex:1;
+    }
+    .hero h2{ font-size:40px; margin:0 0 8px 0; line-height:1.02; font-weight:700; }
+    .hero p.lead{ margin:0 0 18px 0; font-size:18px; opacity:0.95; }
+    .btn-primary{
+      display:inline-block;
+      background:var(--orange-500);
+      border:none;
+      color:white;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      box-shadow: 0 8px 20px rgba(230,126,34,0.18);
+      transition:transform .14s ease, box-shadow .14s;
+    }
+    .btn-primary:hover{ transform:translateY(-3px); box-shadow: 0 18px 38px rgba(230,126,34,0.22); }
+
+    /* Content sections */
+    .container{ max-width:1100px; margin: -48px auto 48px; padding:0 20px; }
+    .card-wrap{ display:grid; grid-template-columns: repeat(3,1fr); gap:22px; margin-top:22px; }
+    .about{
+      background:white;
+      border-radius:12px;
+      padding:22px;
+      box-shadow:var(--card-shadow);
+    }
+
+    /* Product cards */
+    .product-card{
+      background:white;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--card-shadow);
+      display:flex;
+      flex-direction:column;
+      transition: transform .18s ease, box-shadow .18s;
+    }
+    .product-card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(10,10,10,0.12);
+    }
+    .product-card img{ width:100%; height:170px; object-fit:cover; display:block; }
+    .product-body{ padding:14px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+    .product-title{ font-weight:700; margin:0; font-size:16px; }
+    .product-desc{ margin:0; font-size:14px; color:#555; flex:1; }
+    .product-footer{ padding:12px 16px; display:flex; gap:10px; align-items:center; justify-content:space-between; }
+    .price{ font-weight:700; color:#222; }
+    .btn-order{ background:transparent; border:2px solid var(--orange-500); color:var(--orange-500); padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700; }
+    .btn-order:hover{ background:var(--orange-500); color:white; border-color:var(--orange-500); }
+
+    /* Floating whatsapp */
+    .whatsapp {
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:999;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:white;
+      border-radius:999px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.16);
+      overflow:hidden;
+    }
+    .whatsapp a{ display:flex; align-items:center; gap:10px; padding:12px 16px; text-decoration:none; color:var(--orange-500); font-weight:700; }
+    .whatsapp img{ width:36px; height:36px; display:block; border-radius:8px; }
+
+    footer{
+      text-align:center;
+      padding:20px;
+      color:#111;
+      margin-top:34px;
+      opacity:0.9;
+    }
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .card-wrap{ grid-template-columns: repeat(2,1fr); }
+      .hero h2{ font-size:34px; }
+    }
+    @media (max-width:640px){
+      header{ padding:12px 14px; }
+      .hero{ min-height:380px; padding:36px 16px; }
+      .hero-inner{ flex-direction:column; gap:14px; }
+      .card-wrap{ grid-template-columns: 1fr; }
+      .brand p{ display:none; }
+      nav{ display:none; }
+      .hero h2{ font-size:28px; text-align:center; }
+      .hero p.lead{ text-align:center; }
+      .whatsapp{ right:12px; left:auto; bottom:12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <!-- Simple SVG logo (coxinha icon + text) -->
+      <svg class="logo-svg" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="logo coxinha">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0" stop-color="#ffb347"/>
+            <stop offset="1" stop-color="#e67e22"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(8,6)">
+          <path d="M20 0 C32 0 36 12 28 20 C20 28 4 32 0 40 C-2 44 8 46 18 46 C28 46 36 42 40 36 C50 24 10 8 20 0 Z" fill="url(#g)"/>
+        </g>
+      </svg>
+      <div>
+        <h1>Salgados Da Vovó</h1>
+        <p>Tradicional & Artesanal</p>
+      </div>
+    </div>
+
+    <nav aria-label="menu principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" role="banner" aria-label="Hero - Salgados Da Vovó">
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <h2>Salgados da Vovó — coxinhas crocantes e irresistíveis</h2>
+        <p class="lead">Feitas com ingredientes selecionados, massa leve e recheios generosos — o sabor da vovó na sua casa.</p>
+        <a class="btn-primary" href="#produtos" onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">Fazer pedido</a>
+      </div>
+      <!-- Opcional: peça para inserir uma imagem pequena à direita ou deixe o fundo cobrir tudo -->
+    </div>
+  </section>
+
+  <!-- Conteúdo -->
+  <main class="container" id="main">
+
+    <section id="sobre" class="about" aria-labelledby="sobre-title">
+      <h3 id="sobre-title" style="margin-top:0">Sobre nós</h3>
+      <p>Somos uma família que mantém a tradição: receitas da vovó, produção artesanal e atendimento com carinho. Nossas coxinhas são fritas na hora e preparadas com ingredientes selecionados.</p>
+    </section>
+
+    <section id="produtos" style="margin-top:18px;">
+      <h3 style="margin:8px 0 6px 0">Produtos</h3>
+
+      <div class="card-wrap" role="list">
+
+        <!-- Produto Bandeja -->
+        <article class="product-card" role="listitem" aria-label="Bandeja 20 Unidades">
+          <img src="img/bandeja20.jpg" alt="Bandeja 20 unidades — ótimo para festas">
+          <div class="product-body">
+            <h4 class="product-title">Bandeja 20 unidades</h4>
+            <p class="product-desc">Perfeita para eventos — 20 unidades por R$ 20,00.</p>
+            <div class="product-footer">
+              <div class="price">R$ 20,00</div>
+              <button class="btn-order" onclick="order('Bandeja 20 unidades','R$ 20,00')">Fazer pedido</button>
+            </div>
+          </div>
+        </article>
+
+<!-- Produto - Bolinha de Queijo -->
+    <article class="product-card" role="listitem" aria-label="Bolinha de Queijo">
+      <img src="img/bolinhaqueijo.jpg" alt="Bolinha de Queijo — massa leve e queijo derretido">
+     <div class="product-body">
+        <h4 class="product-title">Bandeja de Bolinha de Queijo</h4>
+       <p class="product-desc">Massa macia com recheio de queijo derretido, perfeita para qualquer ocasião. 20 unidades por R$ 20,00.</p>
+       <div class="product-footer">
+         <div class="price">R$ 20,00.</div>
+       <button class="btn-order" onclick="order('Bolinha de Queijo','R$ 1,50')">Fazer pedido</button>
+          </div>
+      </div>
+    </article>
+
+    <!-- Produto - Pão de Queijo -->
+    <article class="product-card" role="listitem" aria-label="Pão de Queijo">
+     <img src="img/paodequeijo.jpg" alt="Pão de Queijo — massa leve e queijo derretido">
+     <div class="product-body">
+     <h4 class="product-title">Pão de Queijo</h4>
+     <p class="product-desc">Tradicional pão de queijo, macio por dentro e crocante por fora. 20 unidades por R$ 20,00.</p>
+     <div class="product-footer">
+          <div class="price">R$ 20.00</div>
+        <button class="btn-order" onclick="order('Pão de Queijo','R$ 1,20')">Fazer pedido</button>
+     </div>
+    </div>
+    </article>
+
+
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" style="margin-top:24px; margin-bottom:6px;">
+      <div class="about">
+        <h4 style="margin-top:0">Contato</h4>
+        <p>WhatsApp: <strong>(15) 99679-7823</strong></p>
+        <p>Instagram: <strong>@salgadosdavoevo</strong></p>
+        <p>Atendimento: Encomendas e entregas locais. Clique no botão "Fazer pedido" para abrir uma mensagem pronta no WhatsApp.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Floating WhatsApp quick button -->
+  <div class="whatsapp" aria-hidden="false">
+    <a href="https://wa.me/5515996797823?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido." target="_blank" rel="noopener noreferrer">
+      <img src="img/whatsapp.png" alt="WhatsApp" />
+      <span>Pedido via WhatsApp</span>
+    </a>
+  </div>
+
+  <footer>
+    <p>© <span id="ano"></span> Salgados Da Vovó — Feito com carinho ❤️</p>
+  </footer>
+
+  <!-- JS: pedido via WhatsApp -->
+  <script>
+    // atualiza ano do rodapé
+    document.getElementById('ano').textContent = new Date().getFullYear();
+
+    // função para abrir WhatsApp com mensagem pronta para pedido
+    function order(name, price){
+      const phone = '5515996797823'; // número com DDI+DDD (Brasil)
+      const text = `Olá! Gostaria de fazer um pedido:%0A- Produto: ${encodeURIComponent(name)}%0A- Valor: ${encodeURIComponent(price)}%0A%0APode confirmar disponibilidade e prazo de entrega?`;
+      const url = `https://wa.me/${phone}?text=${text}`;
+      window.open(url,'_blank');
+    }
+  </script>
+
+</body>
+</html>
